@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.dark {
+  background: #1e1e1e;
+  color: white;
+}
+
+header {
+  background: linear-gradient(135deg, #e8b7c8, #f4d2dc);
+  padding: 30px;
+  border-radius: 0 0 30px 30px;
+}
+
+section {
+  background: white;
+  margin: 20px auto;
+  padding: 25px;
+  max-width: 500px;
+  border-radius: 20px;
+}
+
+.dark section {
+  background: #2b2b2b;
+}
+
+input, textarea {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #d98ba1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.foto-perfil {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px;
+}
