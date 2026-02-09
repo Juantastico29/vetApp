@@ -5,19 +5,19 @@
   <title>Acceso Médico</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="center">
+  <button class="dark-btn" onclick="toggleDark()">🌙</button>
 
-<div class="login-box">
+
+<div class="card">
   <h2>🔐 Acceso Médico</h2>
-
-  <input type="password" id="pin" placeholder="Ingrese PIN">
-  <button id="btnIngresar">Ingresar</button>
-
-  <p id="error" class="error"></p>
-
-  <a href="index.html">⬅ Volver a la web</a>
+  <input type="password" id="pin" placeholder="PIN">
+  <button onclick="login()">Ingresar</button>
 </div>
 
 <script src="js/auth.js"></script>
+<script src="js/login.js"></script>
+<script src="js/darkmode.js"></script>
+
 </body>
 </html>

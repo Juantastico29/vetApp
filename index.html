@@ -2,113 +2,53 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Veterinaria Vanessa Carrasco</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  
 
-<header class="header">
-  <img id="fotoWeb" class="logo" alt="Veterinaria">
-  <h1>🐾 Médico Veterinaria Vanessa Carrasco</h1>
-  <p class="sub">Atención veterinaria a domicilio</p>
-  <span class="zona">📍 Chillán y alrededores</span>
+<button class="dark-btn" onclick="toggleDark()">🌙</button>
+
+<header class="card center">
+  <img id="fotoPerfil" class="perfil">
+  <h1>Médico Veterinaria Vanessa Carrasco</h1>
+  <p id="descTexto">Atención veterinaria a domicilio</p>
+  <span>📍 Chillán y alrededores</span>
+
+  <a class="insta" href="https://www.instagram.com/dra.vanessavet/" target="_blank">
+    📷 Instagram
+  </a>
 </header>
 
-<main class="container">
+<section class="card">
+  <h2>📅 Agendar hora</h2>
 
-  <section class="card">
-    <h2>Sobre mí</h2>
-    <p id="descripcionWeb">
-      Atención veterinaria profesional a domicilio.
-    </p>
-  </section>
+  <input id="tutor" placeholder="Nombre del tutor">
+  <input id="mascota" placeholder="Nombre de la mascota">
 
-  <section class="card">
-    <h2>📅 Agendar hora</h2>
+  <select id="tipo">
+    <option>Perro</option>
+    <option>Gato</option>
+    <option>Otro</option>
+  </select>
 
-    <form id="formAgenda">
-      <input type="text" id="tutor" placeholder="Nombre del tutor" required>
-      <input type="text" id="mascota" placeholder="Nombre de la mascota" required>
-      <input type="date" id="fecha" required>
-      <input type="time" id="hora" required>
+  <input type="date" id="fecha">
+  <input type="time" id="hora">
 
-      <button type="submit">Agendar por WhatsApp</button>
-    </form>
-  </section>
+  <button onclick="agendar()">Agendar por WhatsApp</button>
+</section>
 
-  <section class="card">
-    <h2>🕘 Horario</h2>
-    <p>Lunes a Viernes — 09:00 a 18:00</p>
-  </section>
+<a class="acceso" href="login.html">🔐 Acceso Médico</a>
 
-  <section class="card">
-    <a href="login.html" class="btn-secundario">🔐 Acceso médico</a>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <p>© 2026 Veterinaria Vanessa Carrasco</p>
-</footer>
-
+<script src="js/agenda.js"></script>
+<script src="js/darkmode.js"></script>
 <script>
-/* ===== CARGAR DESCRIPCIÓN ===== */
-const descripcion = localStorage.getItem("descripcion");
-if (descripcion) {
-  document.getElementById("descripcionWeb").textContent = descripcion;
-}
+  document.getElementById("descTexto").innerText =
+    localStorage.getItem("descripcion") || "Atención veterinaria a domicilio";
 
-/* ===== CARGAR FOTO ===== */
-const foto = localStorage.getItem("foto");
-if (foto) {
-  document.getElementById("fotoWeb").src = foto;
-} else {
-  document.getElementById("fotoWeb").src = "img/default.png"; // opcional
-}
-
-/* ===== AGENDA + WHATSAPP ===== */
-document.getElementById("formAgenda").addEventListener("submit", e => {
-  e.preventDefault();
-
-  const tutor = tutor.value;
-  const mascota = mascota.value;
-  const fecha = fecha.value;
-  const hora = hora.value;
-
-  const texto = `Hola, soy ${tutor}.
-Quiero agendar hora para ${mascota}
-📅 ${fecha}
-⏰ ${hora}`;
-
-  // guardar en panel
-  const horas = JSON.parse(localStorage.getItem("horas")) || [];
-  horas.push(`${fecha} - ${hora} (${mascota})`);
-  localStorage.setItem("horas", JSON.stringify(horas));
-
-  // WhatsApp
-  const url = `https://wa.me/56996561680?text=${encodeURIComponent(texto)}`;
-  window.open(url, "_blank");
-
-  e.target.reset();
-});
-</script>
-<script>
-const btn = document.getElementById("toggleDark");
-
-// cargar preferencia
-if (localStorage.getItem("dark") === "true") {
-  document.body.classList.add("dark");
-}
-
-// toggle
-btn.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem(
-    "dark",
-    document.body.classList.contains("dark")
-  );
-});
+  const foto = localStorage.getItem("fotoPerfil");
+  if (foto) document.getElementById("fotoPerfil").src = foto;
 </script>
 
 </body>

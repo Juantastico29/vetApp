@@ -1,19 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
+if (!localStorage.getItem("pin")) {
+  localStorage.setItem("pin", "1234");
+}
 
-  const PIN_CORRECTO = "1234"; // cámbialo después
+function loginOK() {
+  localStorage.setItem("login", "true");
+}
 
-  const btn = document.getElementById("btnIngresar");
+function isLogged() {
+  return localStorage.getItem("login") === "true";
+}
 
-  btn.addEventListener("click", () => {
-    const pin = document.getElementById("pin").value;
-    const error = document.getElementById("error");
-
-    if (pin === PIN_CORRECTO) {
-      localStorage.setItem("auth", "true");
-      window.location.href = "panel.html";
-    } else {
-      error.textContent = "❌ PIN incorrecto";
-    }
-  });
-
-});
+function logout() {
+  localStorage.removeItem("login");
+  location.href = "login.html";
+}

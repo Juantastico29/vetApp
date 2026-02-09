@@ -7,36 +7,40 @@
 </head>
 <body>
 
-<script>
-  if (localStorage.getItem("auth") !== "true") {
-    window.location.href = "login.html";
-  }
-</script>
+<button class="dark-btn" onclick="toggleDark()">🌙</button>
 
-<header class="panel-header">
-  <h1>🐾 Panel Médico</h1>
-  <button onclick="volver()">🏠 Volver a la web</button>
-  <button onclick="cerrar()">🔒 Cerrar sesión</button>
-</header>
 
-<section class="panel-section">
-  <h2>✏️ Editar descripción</h2>
-  <textarea id="descripcion" rows="4"></textarea>
-  <button onclick="guardarDescripcion()">Guardar</button>
+<h1>🩺 Panel Médico</h1>
+
+<button onclick="logout()">Cerrar sesión</button>
+<button onclick="location.href='index.html'">⬅ Volver</button>
+
+<section class="card">
+  <h2>🖼 Foto de perfil</h2>
+  <input type="file" id="fotoInput">
+  <img id="preview" class="perfil">
 </section>
 
-<section class="panel-section">
-  <h2>🖼️ Foto / Logo</h2>
-  <input type="file" id="foto" accept="image/*">
-  <img id="preview" class="preview">
-  <button onclick="guardarFoto()">Guardar foto</button>
+<section class="card">
+  <h2>✏️ Descripción</h2>
+  <textarea id="descEdit"></textarea>
+  <button onclick="guardarDesc()">Guardar</button>
 </section>
 
-<section class="panel-section">
-  <h2>📅 Horas agendadas</h2>
-  <ul id="listaHoras"></ul>
+<section class="card">
+  <h2>📋 Horas agendadas</h2>
+  <div id="lista"></div>
 </section>
 
+<section class="card">
+  <h2>🔐 Cambiar PIN</h2>
+  <input id="pinNuevo" placeholder="Nuevo PIN">
+  <button onclick="cambiarPIN()">Guardar PIN</button>
+</section>
+
+<script src="js/auth.js"></script>
 <script src="js/panel.js"></script>
+<script src="js/darkmode.js"></script>
+
 </body>
 </html>

@@ -1,55 +1,110 @@
+:root {
+  --primary: #e94f7a;
+  --secondary: #4caf93;
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --text: #1f2937;
+  --border: #e5e7eb;
+}
+
+/* ---------------- BASE ---------------- */
 body {
-  font-family: Arial, sans-serif;
-  background: #f6f7fb;
   margin: 0;
-  padding: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  transition: background .3s, color .3s;
+}
+
+h1, h2 {
   text-align: center;
+  color: var(--primary);
 }
 
-.dark {
-  background: #1e1e1e;
-  color: white;
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 600;
 }
 
-header {
-  background: linear-gradient(135deg, #e8b7c8, #f4d2dc);
-  padding: 30px;
-  border-radius: 0 0 30px 30px;
-}
-
-section {
-  background: white;
+/* ---------------- CARD ---------------- */
+.card {
+  background: var(--card);
+  max-width: 460px;
   margin: 20px auto;
-  padding: 25px;
-  max-width: 500px;
-  border-radius: 20px;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  border: 1px solid var(--border);
 }
 
-.dark section {
-  background: #2b2b2b;
-}
-
-input, textarea {
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
+/* ---------------- INPUTS ---------------- */
+input, textarea, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
+  font-size: 15px;
 }
 
+textarea {
+  resize: vertical;
+}
+
+/* ---------------- BOTONES ---------------- */
 button {
-  background: #d98ba1;
-  color: white;
+  width: 100%;
+  padding: 12px;
+  margin-top: 14px;
   border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), #ff7aa8);
+  color: white;
 }
 
-.foto-perfil {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
+button:hover {
+  opacity: .92;
+}
+
+/* ---------------- PERFIL ---------------- */
+.perfil {
+  width: 120px;
+  height: 120px;
   object-fit: cover;
-  margin: 10px;
+  border-radius: 50%;
+  display: block;
+  margin: 10px auto;
+  border: 4px solid var(--secondary);
+}
+
+/* ---------------- BOTÓN DARK ---------------- */
+.dark-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--card);
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  font-size: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.2);
+}
+
+/* ================== MODO OSCURO ================== */
+body.dark {
+  --bg: #0e1116;
+  --card: #161b22;
+  --text: #e5e7eb;
+  --border: #2a2f3a;
+  --primary: #ff6b9a;
+  --secondary: #5dd6b3;
+}
+
+body.dark .dark-btn {
+  background: #161b22;
 }

@@ -1,9 +1,15 @@
 function toggleDark() {
   document.body.classList.toggle("dark");
-  localStorage.setItem("darkmode",
-    document.body.classList.contains("dark"));
+
+  // guardar preferencia
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("darkmode", "on");
+  } else {
+    localStorage.setItem("darkmode", "off");
+  }
 }
 
-if (localStorage.getItem("darkmode") === "true") {
+// cargar preferencia al iniciar
+if (localStorage.getItem("darkmode") === "on") {
   document.body.classList.add("dark");
 }

@@ -1,12 +1,9 @@
-const PIN_CORRECTO = localStorage.getItem("pinMedico") || "1234";
-
 function login() {
   const pin = document.getElementById("pin").value;
-
-  if (pin === PIN_CORRECTO) {
-    localStorage.setItem("auth", "true");
+  if (pin === localStorage.getItem("pin")) {
+    loginOK();
     location.href = "panel.html";
   } else {
-    error.innerText = "❌ PIN incorrecto";
+    alert("PIN incorrecto");
   }
 }

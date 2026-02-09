@@ -1,33 +1,21 @@
-const form = document.getElementById("bookingForm");
+function agendar() {
+  const cita = {
+    tutor: tutor.value,
+    mascota: mascota.value,
+    tipo: tipo.value,
+    fecha: fecha.value,
+    hora: hora.value
+  };
 
-if (form) {
-  form.addEventListener("submit", e => {
-    e.preventDefault();
+  const citas = JSON.parse(localStorage.getItem("citas") || "[]");
+  citas.push(cita);
+  localStorage.setItem("citas", JSON.stringify(citas));
 
-    const data = {
-      tutor: tutor.value,
-      mascota: mascota.value,
-      fecha: fecha.value,
-      hora: hora.value
-    };
+  const msg =
+    `Hola, soy ${cita.tutor}. Mascota: ${cita.mascota} (${cita.tipo}). Fecha ${cita.fecha} a las ${cita.hora}`;
 
-    let horas = JSON.parse(localStorage.getItem("horas")) || [];
-    horas.push(data);
-    localStorage.setItem("horas", JSON.stringify(horas));
-
-    const msg = `Hola, quiero agendar hora:\nTutor: ${data.tutor}\nMascota: ${data.mascota}\nFecha: ${data.fecha}\nHora: ${data.hora}`;
-    window.open(`https://wa.me/56996561680?text=${encodeURIComponent(msg)}`);
-
-    mensaje.innerText = "✅ Hora solicitada";
-    form.reset();
-  });
+  window.open(
+    `https://wa.me/56996561680?text=${encodeURIComponent(msg)}`,
+    "_blank"
+  );
 }
-
-window.onload = () => {
-  if (localStorage.getItem("fotoPerfil")) {
-    fotoPublica.src = localStorage.getItem("fotoPerfil");
-  }
-  if (localStorage.getItem("descripcion")) {
-    descripcionPublica.innerText = localStorage.getItem("descripcion");
-  }
-};

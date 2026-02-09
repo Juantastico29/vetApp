@@ -1,63 +1,47 @@
-function volver() {
-  window.location.href = "index.html";
-}
+if (!isLogged()) location.href = "login.html";
 
-function cerrar() {
-  localStorage.removeItem("auth");
-  window.location.href = "login.html";
-}
+// Foto
+fotoInput.onchange = e => {
+  const reader = new FileReader();
+  reader.onload = () => {
+    localStorage.setItem("fotoPerfil", reader.result);
+    preview.src = reader.result;
+  };
+  reader.readAsDataURL(e.target.files[0]);
+};
 
-// DESCRIPCIÓN
-const textarea = document.getElementById("descripcion");
-textarea.value = localStorage.getItem("descripcion") || "";
+// Descripción
+descEdit.value = localStorage.getItem("descripcion") || "";
 
-function guardarDescripcion() {
-  localStorage.setItem("descripcion", textarea.value);
+function guardarDesc() {
+  localStorage.setItem("descripcion", descEdit.value);
   alert("Descripción guardada");
 }
 
-// FOTO
-const inputFoto = document.getElementById("foto");
-const preview = document.getElementById("preview");
+// PIN
+function cambiarPIN() {
+  const nuevo = pinNuevo.value;
+  if (nuevo.length < 4) return alert("PIN mínimo 4 dígitos");
+  localStorage.setItem("pin", nuevo);
+  alert("PIN actualizado");
+}
 
-inputFoto.addEventListener("change", () => {
-  const file = inputFoto.files[0];
-  const reader = new FileReader();
+// Citas
+const lista = document.getElementById("lista");
+const citas = JSON.parse(localStorage.getItem("citas") || "[]");
 
-  reader.onload = () => {
-    preview.src = reader.result;
-  };
-
-  reader.readAsDataURL(file);
+citas.forEach((c, i) => {
+  const div = document.createElement("div");
+  div.innerHTML = `
+    <b>${c.tutor}</b> - ${c.mascota} (${c.tipo})
+    <br>${c.fecha} ${c.hora}
+    <button onclick="borrar(${i})">❌</button>
+  `;
+  lista.appendChild(div);
 });
 
-function guardarFoto() {
-  if (preview.src) {
-    localStorage.setItem("foto", preview.src);
-    alert("Foto guardada");
-  }
+function borrar(i) {
+  citas.splice(i,1);
+  localStorage.setItem("citas", JSON.stringify(citas));
+  location.reload();
 }
-
-// AGENDA
-const lista = document.getElementById("listaHoras");
-const horas = JSON.parse(localStorage.getItem("horas")) || [];
-
-function renderHoras() {
-  lista.innerHTML = "";
-  horas.forEach((h, i) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${h}
-      <button onclick="eliminarHora(${i})">❌</button>
-    `;
-    lista.appendChild(li);
-  });
-}
-
-function eliminarHora(index) {
-  horas.splice(index, 1);
-  localStorage.setItem("horas", JSON.stringify(horas));
-  renderHoras();
-}
-
-renderHoras();
